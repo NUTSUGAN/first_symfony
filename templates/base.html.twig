@@ -14,6 +14,12 @@
                 {% block body %}{% endblock %}
             </div>
         </main>
-        <footer> {% block footer %}{% endblock %} </footer>
+       <footer class="mt-auto bg-light border-top">
+            <div class="container px-5 py-3 text-muted small d-flex justify-content-between">
+                <span>TP Symfony — IPSSI</span>
+                <span>{{ "now"|date("d/m/Y H:i") }}</span>
+            </div>
+        </footer>
+
     </body>
 </html>

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<h1 class="h3 mb-4">Dashboard</h1>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Catégories</h5>
+                <p class="card-text">Total : <strong>{{ countCategories }}</strong></p>
+                <a class="btn btn-primary" href="{{ path('category_index') }}">Voir</a>
+                <a class="btn btn-outline-primary" href="{{ path('category_new') }}">Ajouter</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Posts</h5>
+                <p class="card-text">Total : <strong>{{ countPosts }}</strong></p>
+                <a class="btn btn-warning" href="{{ path('post_index') }}">Voir</a>
+                <a class="btn btn-outline-warning" href="{{ path('post_new') }}">Ajouter</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nouveau post{% endblock %}
+
+{% block body %}
+<h1 class="h3 mb-3">Créer un post</h1>
+
+{{ form_start(form) }}
+    <div class="mb-3">
+        {{ form_label(form.title, null, {'label_attr': {'class':'form-label'}}) }}
+        {{ form_widget(form.title, {'attr': {'class':'form-control'}}) }}
+        {{ form_errors(form.title) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.content, null, {'label_attr': {'class':'form-label'}}) }}
+        {{ form_widget(form.content, {'attr': {'class':'form-control', 'rows': 6}}) }}
+        {{ form_errors(form.content) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.category, null, {'label_attr': {'class':'form-label'}}) }}
+        {{ form_widget(form.category, {'attr': {'class':'form-select'}}) }}
+        {{ form_errors(form.category) }}
+    </div>
+
+    <button class="btn btn-warning">Créer</button>
+    <a class="btn btn-link" href="{{ path('app_post_index') }}">Retour</a>
+{{ form_end(form) }}
+{% endblock %}
