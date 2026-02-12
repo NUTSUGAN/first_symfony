@@ -9,7 +9,7 @@ class Post
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -18,15 +18,16 @@ class Post
     #[ORM\Column(type: 'text')]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'posts')]
+    #[ORM\Column]
+    private \DateTimeImmutable $createdAt;
+
+    #[ORM\ManyToOne(inversedBy: 'posts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $createdAt;
-
     public function __construct()
     {
+        // ✅ Date de création automatique
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -57,6 +58,11 @@ class Post
         return $this;
     }
 
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -66,10 +72,5 @@ class Post
     {
         $this->category = $category;
         return $this;
-    }
-
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
     }
 }
