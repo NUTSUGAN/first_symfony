@@ -26,20 +26,23 @@ private ?string $name = null;
 private Collection $posts;
 
 
-public function __construct()
+#[ORM\ManyToOne]
+#[ORM\JoinColumn(nullable: false)]
+private ?User $createdBy = null;
+
+public function getCreatedBy(): ?User
 {
-$this->posts = new ArrayCollection();
+    return $this->createdBy;
 }
 
-
-public function getId(): ?int
+public function setCreatedBy(?User $createdBy): self
 {
-return $this->id;
+    $this->createdBy = $createdBy;
+    return $this;
 }
 
-
-public function getName(): ?string
-{
+    
+public function __construct() { $this->posts = new ArrayCollection(); } public function getId(): ?int { return $this->id; } public function getName(): ?string {
 return $this->name;
 }
 

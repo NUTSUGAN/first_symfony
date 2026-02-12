@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -24,6 +25,21 @@ class Post
     #[ORM\ManyToOne(inversedBy: 'posts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $createdBy = null;
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+        $this->createdBy = $createdBy;
+        return $this;
+    }
 
     public function __construct()
     {
